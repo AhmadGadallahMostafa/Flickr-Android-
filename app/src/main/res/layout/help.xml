@@ -1,0 +1,180 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:inputType="text"/>
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textSize="40dp"
+        android:gravity="center"
+        android:text="Popular Articles"
+        android:textColor="@color/black"
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Logging in to Your Flickr Account"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change Your Flickr Contact Email Address"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change Your Flickr Contact Email Address"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Get Flickr notifications by email and in your account"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Pricing FAQ"
+        android:gravity="left"
+
+        />
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:text="Browse Flickr Topics"
+        android:textColor="@color/black"
+        />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:text="Get Started >"
+    android:gravity="left"
+
+    />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Account Access >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Billing >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Flickr Prints >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Manage Contents >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Flickr App > >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Sharing and Social>"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Settings and Preferences >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Upload and Download Photos >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Trust and Safety >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Privacy and Security >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Third-Party Apps >"
+        android:gravity="left"
+
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="FAQS >"
+        android:gravity="left"
+
+        />
+
+</LinearLayout>
+</ScrollView>

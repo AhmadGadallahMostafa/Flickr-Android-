@@ -1,0 +1,61 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:textSize="40dp"
+        android:background="@color/black"
+        android:text="About"
+        android:textColor="@color/white"
+        />
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+        android:gravity="left"
+
+        android:text="Community Guidelines"
+     />
+
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Terms of Service (Updated)"
+        android:gravity="left"
+  />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy (Updated)"
+        android:gravity="left"
+        />
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Credits"
+        android:gravity="left"
+    />
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Cover Photo"
+        android:gravity="left"
+    />
+
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Build Version"
+        android:gravity="left"
+
+     />
+    <Button
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Build ID"
+        android:gravity="left"
+    />
+    </LinearLayout>
