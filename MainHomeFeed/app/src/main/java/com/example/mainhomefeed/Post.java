@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Post {
+    private int postId;
     private UserProfile postUserProfile;
     private int favouriteCount;
     private int commentCount;
@@ -14,9 +15,10 @@ public class Post {
     private Date datePosted;
     private String timeSincePosted;//temp
 
-    public Post(UserProfile postUserProfile, String imageURL) {
+    public Post(int postId, UserProfile postUserProfile, String imageURL) {
         this.postUserProfile = postUserProfile;
         this.imageURL = imageURL;
+        this.postId = postId;
     }
 
     public String getImageURL() {
@@ -42,4 +44,22 @@ public class Post {
     public ArrayList<UserProfile> getFavourtiesUsersArray() {
         return favourtiesUsersArray;
     }
+
+    public int getPostId() {
+        return postId;
+    }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public Date getDatePosted() {
+        return datePosted;
+    }
+
+    public String getTimeSincePosted() {
+        return timeSincePosted;
+    }
+
+
 }

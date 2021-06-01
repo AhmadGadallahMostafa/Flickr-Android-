@@ -112,6 +112,7 @@
                 android:orientation="horizontal"
                 >
                 <RelativeLayout
+                    android:id="@+id/favButtonPostMenu"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
@@ -125,6 +126,7 @@
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/commentsButton"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"

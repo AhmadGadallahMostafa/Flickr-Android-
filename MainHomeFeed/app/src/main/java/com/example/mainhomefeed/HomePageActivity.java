@@ -51,6 +51,9 @@ public class HomePageActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Intializes the icons for the tablayout in the homepage
+     */
     void InitTabLayoutTabs(){
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_home_feed);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_search);

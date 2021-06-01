@@ -38,12 +38,12 @@ public class HomeFeedFragment extends Fragment {
         UserProfile tempProf = new UserProfile();
         tempProf.setName("cufe");
         ArrayList<Post> posts = new ArrayList<>();
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(11,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(22,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(33,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(44,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(55,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        posts.add(new Post(66,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
 
         postAdapter.setPosts(posts);
         return v;
