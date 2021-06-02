@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Post {
-    private int postId;
-    private UserProfile postUserProfile;
+    private final int postId;
+    private final UserProfile postUserProfile;
     private int favouriteCount;
     private int commentCount;
     private ArrayList<Comment> commentsArray;
     private ArrayList<UserProfile> favourtiesUsersArray;
-    private String imageURL;
+    private final String imageURL;
     private String caption;
     private Date datePosted;
     private String timeSincePosted;//temp

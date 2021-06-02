@@ -29,7 +29,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
     private static final String TAG = "PostRecViewAdapter";
 
     private ArrayList<Post> posts = new ArrayList<>();
-    private Context parentContext;
+    private final Context parentContext;
     private Fragment fragmentContext;
 
     public PostRecViewAdapter(Context parentContext) {
@@ -128,13 +128,13 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        private CardView parent;
-        private ImageView postImg;
-        private TextView userNameTxt;
-        private TextView comments;
-        private TextView favourites;
-        private RelativeLayout favouriteButton;
-        private RelativeLayout commentsButton;
+        private final CardView parent;
+        private final ImageView postImg;
+        private final TextView userNameTxt;
+        private final TextView comments;
+        private final TextView favourites;
+        private final RelativeLayout favouriteButton;
+        private final RelativeLayout commentsButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.cardView_parent);

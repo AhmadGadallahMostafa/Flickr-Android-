@@ -1,14 +1,32 @@
 package com.example.mainhomefeed;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -17,6 +35,11 @@ public class HomeFeedFragment extends Fragment {
 
     private RecyclerView postRecView;
     private PostRecViewAdapter postAdapter;
+    private RequestQueue mRequestQueue;
+    private StringRequest mStringRequest;
+    private static final String TAG = MainActivity.class.getName();
+    private ArrayList<Post> posts;
+    private int pageNum = 10;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,17 +58,86 @@ public class HomeFeedFragment extends Fragment {
 
         postRecView.setAdapter(postAdapter);
         postRecView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        UserProfile tempProf = new UserProfile();
-        tempProf.setName("cufe");
-        ArrayList<Post> posts = new ArrayList<>();
-        posts.add(new Post(11,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(22,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(33,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(44,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(55,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
-        posts.add(new Post(66,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        postRecView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            /**
+             * checks if the user scrolled to the end of the screen, when he does load in the next
+             * 10 posts
+             * @param recyclerView
+             * @param newState
+             */
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(!recyclerView.canScrollVertically(1)){
+                    System.out.println("end");
+                    getPhotos();
+                }
+            }
+        });
+        //mRequestQueue = new RequestQueue();
+        mRequestQueue = MySingleton.getInstance(getContext().getApplicationContext()).
+                getRequestQueue();
 
-        postAdapter.setPosts(posts);
+        //UserProfile tempProf = new UserProfile();
+        //tempProf.setName("cufe");
+        posts = new ArrayList<>();
+        //posts.add(new Post(11,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts.add(new Post(22,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts.add(new Post(33,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts.add(new Post(44,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts.add(new Post(55,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts.add(new Post(66,tempProf,"https://sites.google.com/site/riskcufe/_/rsrc/1343260633090/home/Faculty%20LOGO.png"));
+        //posts = new ArrayList<>();
+        getPhotos();
+        //postAdapter.setPosts(posts);
         return v;
+    }
+
+    /**
+     * Loads the next 10 posts, by creating the user and the post intances and intializing thier
+     * data, into the posts array that loads into the recycle viewer
+     */
+    private void getPhotos(){
+        String url ="https://api.unsplash.com/photos?client_id=lw8JVwKlDWjEhUxqdnB2tRel7Fduqc2Z1_DdXyAzNzI&?page=1&per_page="+ Integer.toString(pageNum);
+        System.out.println(url);
+
+        mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                JSONArray jsonArray;
+
+                try{
+                    jsonArray = new JSONArray(response);
+                    //posts = new ArrayList<>();
+                    for(int i=pageNum-10;i<pageNum;i++){
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String idImg=jsonObject.get("id").toString();
+                        System.out.println("id:"+idImg);
+                        UserProfile userProfile = new UserProfile();
+                        String userName = jsonObject.getJSONObject("user").get("name").toString();
+                        System.out.println("username:"+userName);
+                        userProfile.setName(userName);
+                        String urlImg =jsonObject.getJSONObject("urls").get("raw").toString();
+                        System.out.println("url:"+urlImg);
+                        posts.add(new Post(i*10,userProfile,urlImg));
+                        postAdapter.setPosts(posts);
+                    }
+                    //pageNum++;
+                    pageNum=pageNum+10;
+                }catch(Throwable tx){
+                    jsonArray=null;
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Log.i(TAG,"Error :" + error.toString());
+            }
+        });
+
+        mRequestQueue.add(mStringRequest);
     }
 }

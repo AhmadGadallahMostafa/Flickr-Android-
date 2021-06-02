@@ -23,6 +23,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.Cache;
+import com.android.volley.Network;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -32,7 +39,6 @@ public class HomePageActivity extends AppCompatActivity {
     private TabLayout tabLayout ;
     private ViewPager viewPager2;
     private MyPagerAdapter pagerAdapter;
-
 
 
     @Override
@@ -45,9 +51,6 @@ public class HomePageActivity extends AppCompatActivity {
         viewPager2.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager2);
         InitTabLayoutTabs();
-
-
-
 
     }
 
@@ -70,6 +73,12 @@ public class HomePageActivity extends AppCompatActivity {
             super(fm);
         }
 
+        /**
+         * Loads in the fragment that is selected by the tab layout of the viewpager depending on
+         * the position
+         * @param position the position of the selected fragement in the tab layout
+         * @return the fragment that should be selected
+         */
         @NonNull
         @Override
         public Fragment getItem(int position) {
@@ -85,9 +94,13 @@ public class HomePageActivity extends AppCompatActivity {
 
         }
 
+        /**
+         * gets the number of tabs in this tablayout
+         * @return the number of tabs in this tablayout
+         */
         @Override
         public int getCount() {
             return 5;
         }
     }
-};
+}
