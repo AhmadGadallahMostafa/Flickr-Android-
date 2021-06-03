@@ -36,7 +36,7 @@ public class FavouritesCommentsActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         intializeTabLayout();
-        Toast.makeText(this, "comments , postID "+ (Integer.parseInt(tabLayoutChoice)),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "comments , postID "+ (Integer.parseInt(tabLayoutChoice)),Toast.LENGTH_SHORT).show();
         tabLayout.getTabAt((Integer.parseInt(tabLayoutChoice))).select();
     }
 

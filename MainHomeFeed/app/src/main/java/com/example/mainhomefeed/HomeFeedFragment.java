@@ -119,7 +119,7 @@ public class HomeFeedFragment extends Fragment {
                         userProfile.setName(userName);
                         String urlImg =jsonObject.getJSONObject("urls").get("raw").toString();
                         System.out.println("url:"+urlImg);
-                        posts.add(new Post(i*10,userProfile,urlImg));
+                        posts.add(new Post(idImg,userProfile,urlImg,i));
                         postAdapter.setPosts(posts);
                     }
                     //pageNum++;

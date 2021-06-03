@@ -119,10 +119,20 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp">
                     <ImageView
+                        android:id="@+id/favButtonStar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_fav_unclicked"
-                        android:layout_centerInParent="true"/>
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/favCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/favButtonStar"/>
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -132,21 +142,37 @@
                     android:layout_weight="0.3"
                     >
                     <ImageView
+                        android:id="@+id/commentsButtonIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_comments"
                         android:layout_centerInParent="true"/>
+
+                    <TextView
+                        android:id="@+id/commentsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/commentsButtonIcon"
+                        android:text="0"
+                        android:layout_centerVertical="true"
+                         />
                 </RelativeLayout>
 
                 <RelativeLayout
+                    android:id="@+id/shareButtonArea"
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_weight="0.3">
                     <ImageView
+                        android:id="@+id/shareButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_share"
-                        android:layout_centerInParent="true"/>
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        />
                 </RelativeLayout>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
