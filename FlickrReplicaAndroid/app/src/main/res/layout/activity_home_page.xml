@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HomePageActivity">
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/homePageViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:minHeight="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:minHeight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/homePageTabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/layoutBar"
+                    android:minHeight="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:tabContentStart="72dp"
+                    app:tabGravity="fill"
+                    app:tabIconTint="@color/layout_color_selector"
+                    app:tabIndicatorColor="@color/layoutBar"
+                    app:tabMode="fixed"
+                    app:tabRippleColor="@color/layoutBarHovered"
+                    app:tabSelectedTextColor="#FFFFFF"
+                    app:tabTextColor="@color/white">
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/homeFeedTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/ic_home_feed"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/searchTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/ic_search"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/profileTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/ic_profile"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/notificationsTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/ic_notification_bell"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+                    <com.google.android.material.tabs.TabItem
+                        android:id="@+id/cameraTab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:icon="@drawable/ic_camera"
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+
+
+                </com.google.android.material.tabs.TabLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

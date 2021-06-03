@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cardView_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/postImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/postInfo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/post_info_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postImage">
+
+            <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_profile"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/userProfileName"
+                android:layout_width="114dp"
+                android:layout_height="18dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+
+                android:text="UserProfileName"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="335dp" />
+
+            <TextView
+                android:id="@+id/captionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="captionText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/userProfileName" />
+
+            <TextView
+                android:id="@+id/timeSincePostedTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="timeSincePostedTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/post_info_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postInfo"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/com_bar_color"
+                />
+        </RelativeLayout>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/postMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/separator"
+            android:background="@color/post_info_color">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <RelativeLayout
+                    android:id="@+id/favButtonPostMenu"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+                    <ImageView
+                        android:id="@+id/favButtonStar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_fav_unclicked"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/favCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:layout_marginLeft="10dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@id/favButtonStar"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/commentsButton"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    >
+                    <ImageView
+                        android:id="@+id/commentsButtonIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_comments"
+                        android:layout_centerInParent="true"/>
+
+                    <TextView
+                        android:id="@+id/commentsCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_toRightOf="@id/commentsButtonIcon"
+                        android:text="0"
+                        android:layout_centerVertical="true"
+                         />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/shareButtonArea"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3">
+                    <ImageView
+                        android:id="@+id/shareButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_share"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"
+                        />
+                </RelativeLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:id="@+id/comFavBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/com_bar_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/postMenu">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/favourites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Favourites Here\n" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/comments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/favourites"
+                android:text="Commenter Name\nComment" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/blackBar"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comFavBar">
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
