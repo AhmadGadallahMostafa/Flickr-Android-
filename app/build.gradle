@@ -1,18 +1,13 @@
 plugins {
     id 'com.android.application'
 }
-allprojects {
-    repositories {
-        jcenter()
-        google()
-    }
-}
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.justjava"
+        applicationId "com.example.login"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -41,5 +36,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    classpath 'com.android.tools.build:gradle:3.6.0'
+
+    implementation'com.squareup.retrofit2:converter-gson:2.8.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation'com.squareup.okhttp3:logging-interceptor:4.9.1'
+
+
 }
