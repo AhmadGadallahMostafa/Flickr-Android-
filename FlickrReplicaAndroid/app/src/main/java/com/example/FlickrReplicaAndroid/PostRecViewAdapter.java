@@ -17,12 +17,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  */
-public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.ViewHolder>{
+public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.ViewHolder> {
     private static final String TAG = "PostRecViewAdapter";
 
     private ArrayList<Post> posts = new ArrayList<>();
@@ -35,6 +36,10 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
     public PostRecViewAdapter(Context parentContext,Fragment fragmentContext) {
         this.parentContext = parentContext;
         this.fragmentContext = fragmentContext;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
     }
 
     @NonNull
@@ -85,7 +90,8 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 //Intent intent = new Intent(this,activity.class );
                 //Activity activity = new PostImageActivity();
                 intent = new Intent(parentContext,PostImageActivity.class );
-                intent.putExtra("postIdIntent",postId);
+                intent.putExtra("postPosition",position);
+                intent.putExtra("post",posts.get(position));
                 parentContext.startActivity(intent);
                 //Toast.makeText(parentContext, "new image" + position+ " selected, postID "+ postId,Toast.LENGTH_SHORT).show();
             case (R.id.cardView_parent):

@@ -1,7 +1,9 @@
 package com.example.FlickrReplicaAndroid;
 
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     private UserProfile commentUserProfile;
     private String commentText;
 

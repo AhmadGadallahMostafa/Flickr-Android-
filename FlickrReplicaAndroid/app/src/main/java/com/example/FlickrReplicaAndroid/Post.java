@@ -1,9 +1,10 @@
 package com.example.FlickrReplicaAndroid;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Post {
+public class Post implements Serializable {
     private final String postId;
     private final UserProfile postUserProfile;
     private final String imageURL;
@@ -15,6 +16,8 @@ public class Post {
     private String caption;
     private Date datePosted;
     private String timeSincePosted;//temp
+
+
 
     public Post(String postId, UserProfile postUserProfile, String imageURL,int position) {
         this.postUserProfile = postUserProfile;
@@ -68,6 +71,7 @@ public class Post {
     }
 
     public String getCaption() {
+        if(caption.equals("null")) return "";
         return caption;
     }
 
