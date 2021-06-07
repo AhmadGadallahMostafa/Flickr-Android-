@@ -21,7 +21,10 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomeFeedFragment extends Fragment {
@@ -117,6 +120,12 @@ public class HomeFeedFragment extends Fragment {
                         Post postPointer = new Post(idImg,userProfile,urlImg,i);
                         String caption = jsonObject.get("alt_description").toString();
                         postPointer.setCaption(caption);
+                        String date = jsonObject.get("created_at").toString();
+                        String daten = date.substring(0,19);
+                        daten = daten + ".0" + date.substring(19,25);
+                        SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+                        Date datePosted = d.parse(daten);
+                        postPointer.setDatePosted(datePosted);
                         posts.add(postPointer);
 
                         postAdapter.setPosts(posts);
