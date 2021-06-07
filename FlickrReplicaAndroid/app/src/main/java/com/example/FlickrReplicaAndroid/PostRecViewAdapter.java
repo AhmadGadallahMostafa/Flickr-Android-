@@ -106,6 +106,8 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         Log.d(TAG,"onBindViewHolder: Called");
         String postId = posts.get(position).getPostId();
         holder.userNameTxt.setText(posts.get(position).getPostUserProfile().getName());
+        holder.captionText.setText(posts.get(position).getCaption());
+        Glide.with(fragmentContext).asBitmap().load(posts.get(position).getPostUserProfile().getProfilePicURL()).into(holder.profImage);
         Glide.with(fragmentContext).asBitmap().load(posts.get(position).getImageURL()).into(holder.postImg);
         holder.postImg.setOnClickListener(v -> onClick(v,position,postId));
         holder.comments.setOnClickListener(v -> onClick(v,position,postId));
@@ -144,6 +146,8 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         private final RelativeLayout favouriteButton;
         private final RelativeLayout commentsButton;
         private final ImageView shareButton;
+        private final TextView captionText;
+        private final ImageView profImage;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.cardView_parent);
@@ -154,6 +158,8 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
             favourites = itemView.findViewById(R.id.favourites);
             favouriteButton = itemView.findViewById(R.id.favButtonPostMenu);
             shareButton = itemView.findViewById(R.id.shareButton);
+            captionText = itemView.findViewById(R.id.captionText);
+            profImage = itemView.findViewById(R.id.profileImg);
 
         }
     }

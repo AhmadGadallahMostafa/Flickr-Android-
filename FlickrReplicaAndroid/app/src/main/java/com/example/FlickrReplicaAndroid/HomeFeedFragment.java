@@ -32,7 +32,7 @@ public class HomeFeedFragment extends Fragment {
     private StringRequest mStringRequest;
     private static final String TAG = MainActivity.class.getName();
     private ArrayList<Post> posts;
-    private int pageNum = 10;
+    private int pageNum = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class HomeFeedFragment extends Fragment {
      * data, into the posts array that loads into the recycle viewer
      */
     private void getPhotos(){
-        String url ="https://api.unsplash.com/photos?client_id=lw8JVwKlDWjEhUxqdnB2tRel7Fduqc2Z1_DdXyAzNzI&?page=1&per_page="+ pageNum;
+        String url ="https://api.unsplash.com/photos?client_id=lw8JVwKlDWjEhUxqdnB2tRel7Fduqc2Z1_DdXyAzNzI&page="+ pageNum;
         System.out.println(url);
 
         mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
@@ -102,7 +102,7 @@ public class HomeFeedFragment extends Fragment {
                 try{
                     jsonArray = new JSONArray(response);
                     //posts = new ArrayList<>();
-                    for(int i=pageNum-10;i<pageNum;i++){
+                    for(int i=0;i<10;i++){
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         String idImg=jsonObject.get("id").toString();
                         System.out.println("id:"+idImg);
@@ -110,13 +110,20 @@ public class HomeFeedFragment extends Fragment {
                         String userName = jsonObject.getJSONObject("user").get("name").toString();
                         System.out.println("username:"+userName);
                         userProfile.setName(userName);
+                        String urlProfImg =jsonObject.getJSONObject("user").getJSONObject("profile_image").get("small").toString();
+                        userProfile.setProfilePicURL(urlProfImg);
                         String urlImg =jsonObject.getJSONObject("urls").get("raw").toString();
                         System.out.println("url:"+urlImg);
-                        posts.add(new Post(idImg,userProfile,urlImg,i));
+                        Post postPointer = new Post(idImg,userProfile,urlImg,i);
+                        String caption = jsonObject.get("alt_description").toString();
+                        postPointer.setCaption(caption);
+                        posts.add(postPointer);
+
                         postAdapter.setPosts(posts);
+
                     }
                     //pageNum++;
-                    pageNum=pageNum+10;
+                    pageNum=pageNum+1;
                 }catch(Throwable tx){
                     jsonArray=null;
                 }
