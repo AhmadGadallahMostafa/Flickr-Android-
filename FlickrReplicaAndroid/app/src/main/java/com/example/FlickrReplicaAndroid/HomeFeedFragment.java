@@ -126,6 +126,8 @@ public class HomeFeedFragment extends Fragment {
                         SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
                         Date datePosted = d.parse(daten);
                         postPointer.setDatePosted(datePosted);
+                        int favs = Integer.parseInt(jsonObject.get("likes").toString());
+                        postPointer.setFavouriteCount(favs);
                         posts.add(postPointer);
 
                         postAdapter.setPosts(posts);

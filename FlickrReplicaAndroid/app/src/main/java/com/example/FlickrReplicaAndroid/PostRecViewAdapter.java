@@ -116,6 +116,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         holder.userNameTxt.setText(posts.get(position).getPostUserProfile().getName());
         holder.captionText.setText(posts.get(position).getCaption());
         holder.timeSincePostedText.setText(posts.get(position).getTimeSincePosted());
+        holder.favCountText.setText(Integer.toString(posts.get(position).getFavouriteCount()));
         Glide.with(fragmentContext).asBitmap().load(posts.get(position).getPostUserProfile().getProfilePicURL()).into(holder.profImage);
         Glide.with(fragmentContext).asBitmap().load(posts.get(position).getImageURL()).into(holder.postImg);
         holder.postImg.setOnClickListener(v -> onClick(v,position,postId));
@@ -158,6 +159,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         private final TextView captionText;
         private final ImageView profImage;
         private final TextView timeSincePostedText;
+        private final TextView favCountText;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.cardView_parent);
@@ -171,6 +173,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
             captionText = itemView.findViewById(R.id.captionText);
             profImage = itemView.findViewById(R.id.profileImg);
             timeSincePostedText = itemView.findViewById(R.id.timeSincePostedTxt);
+            favCountText = itemView.findViewById(R.id.favCount);
 
         }
     }
