@@ -95,6 +95,7 @@ public class HomeFeedFragment extends Fragment {
      */
     private void getPhotos(){
         String url ="https://api.unsplash.com/photos?client_id=lw8JVwKlDWjEhUxqdnB2tRel7Fduqc2Z1_DdXyAzNzI&page="+ pageNum;
+        //String url ="https://flickrreplica.free.beeceptor.com/photos/"+ pageNum;
         System.out.println(url);
 
         mStringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {

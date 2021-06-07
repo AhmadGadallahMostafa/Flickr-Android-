@@ -67,7 +67,7 @@ public class FavouritesCommentsActivity extends AppCompatActivity {
             switch(position) {
 
                 case 0: return new FavouritesListFragment();
-                case 1: return new CommentsFragment();
+                case 1: return new CommentsFragment(post);
                 default: return new FavouritesListFragment();
             }
 
