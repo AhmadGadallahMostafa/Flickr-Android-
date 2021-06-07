@@ -40,6 +40,7 @@ public class PostImageActivity extends AppCompatActivity implements View.OnClick
             case(R.id.favButtonPostImg):
                 intent = new Intent(this,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","0");
+                intent.putExtra("post",postOfImage);
                 this.startActivity(intent);
                 break;
             case(R.id.shareButtonPostImg):
@@ -52,6 +53,7 @@ public class PostImageActivity extends AppCompatActivity implements View.OnClick
             case(R.id.commentsButtonPostImg):
                 intent = new Intent(this,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","1");
+                intent.putExtra("post",postOfImage);
                 this.startActivity(intent);
                 break;
             case(R.id.postImageLayout):

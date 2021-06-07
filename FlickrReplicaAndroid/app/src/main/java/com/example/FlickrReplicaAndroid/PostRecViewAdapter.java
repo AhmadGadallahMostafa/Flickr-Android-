@@ -75,6 +75,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 intent = new Intent(parentContext,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","0");
                 intent.putExtra("postIdIntent",postId);
+                intent.putExtra("post",posts.get(position));
                 parentContext.startActivity(intent);
                 break;
             case(R.id.commentsButton):
@@ -83,6 +84,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 intent = new Intent(parentContext,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","1");
                 intent.putExtra("postIdIntent",postId);
+                intent.putExtra("post",posts.get(position));
                 parentContext.startActivity(intent);
                 //Toast.makeText(parentContext, "new comment" + position+ " selected, postID "+ postId,Toast.LENGTH_SHORT).show();
                 break;
