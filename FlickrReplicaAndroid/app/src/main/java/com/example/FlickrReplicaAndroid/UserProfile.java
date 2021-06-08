@@ -1,8 +1,6 @@
 package com.example.FlickrReplicaAndroid;
 
-import java.io.Serializable;
-
-public class UserProfile implements Serializable {
+public class UserProfile {
     private String name;
     private String profilePicURL;
     private boolean isPro;

@@ -35,17 +35,17 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty((etEmail.getText().toString())) || TextUtils.isEmpty((etSName.getText().toString())) ||TextUtils.isEmpty((etName.getText().toString())) || TextUtils.isEmpty((etAge.getText().toString())) ||TextUtils.isEmpty((etPassword.getText().toString())) || TextUtils.isEmpty((etRPassword.getText().toString())) )
-                {
-                    String message ="all infos are requeired";
-                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                if(TextUtils.isEmpty((etEmail.getText().toString())) || TextUtils.isEmpty((etSName.getText().toString())) ||TextUtils.isEmpty((etName.getText().toString())) || TextUtils.isEmpty((etAge.getText().toString())) ||TextUtils.isEmpty((etPassword.getText().toString())) || TextUtils.isEmpty((etRPassword.getText().toString())) ) {
+                    String message = "all infos are requeired";
+                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
 
-
-                /*else if(etPassword.getText()!=etRPassword.getText())
+                }
+                /*
+                else if(etPassword.getText()!=etRPassword.getText())
                 {
                     String message ="password not match..try again";
-                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();*/
-                }
+                    Toast.makeText(RegisterActivity.this,message,Toast.LENGTH_LONG).show();
+                }*/
                 else {
 
                     RegisterRequest registerRequest = new RegisterRequest();

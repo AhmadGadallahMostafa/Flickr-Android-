@@ -1,14 +1,9 @@
 package com.example.FlickrReplicaAndroid;
 
-import org.ocpsoft.prettytime.PrettyTime;
-
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Post implements Serializable {
+public class Post {
     private final String postId;
     private final UserProfile postUserProfile;
     private final String imageURL;
@@ -20,8 +15,6 @@ public class Post implements Serializable {
     private String caption;
     private Date datePosted;
     private String timeSincePosted;//temp
-
-
 
     public Post(String postId, UserProfile postUserProfile, String imageURL,int position) {
         this.postUserProfile = postUserProfile;
@@ -75,7 +68,6 @@ public class Post implements Serializable {
     }
 
     public String getCaption() {
-        if(caption.equals("null")) return "";
         return caption;
     }
 
@@ -87,9 +79,8 @@ public class Post implements Serializable {
         return datePosted;
     }
 
-    public Date setDatePosted(Date datePosted) {
-        setTimeSincePosted(getTimeSincePostedString(datePosted));
-        return this.datePosted = datePosted;
+    public void setDatePosted(Date datePosted) {
+        this.datePosted = datePosted;
     }
 
     public String getTimeSincePosted() {
@@ -107,15 +98,4 @@ public class Post implements Serializable {
     public void setPosition(int position) {
         this.position = position;
     }
-
-    /**
-     * Takes time in Date format and turns into an easily readable time since posted eg: moments ago , 3w ago
-     * @param d Date in Date format
-     * @return string of time since posted
-     */
-    public String getTimeSincePostedString(Date d){
-        PrettyTime p = new PrettyTime();
-        return (p.format(d));
-    }
-
 }

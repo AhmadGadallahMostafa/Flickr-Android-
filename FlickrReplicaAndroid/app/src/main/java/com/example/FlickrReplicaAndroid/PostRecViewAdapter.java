@@ -17,13 +17,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  */
-public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.ViewHolder> {
+public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.ViewHolder>{
     private static final String TAG = "PostRecViewAdapter";
 
     private ArrayList<Post> posts = new ArrayList<>();
@@ -36,10 +35,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
     public PostRecViewAdapter(Context parentContext,Fragment fragmentContext) {
         this.parentContext = parentContext;
         this.fragmentContext = fragmentContext;
-    }
-
-    public ArrayList<Post> getPosts() {
-        return posts;
     }
 
     @NonNull
@@ -75,7 +70,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 intent = new Intent(parentContext,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","0");
                 intent.putExtra("postIdIntent",postId);
-                intent.putExtra("post",posts.get(position));
                 parentContext.startActivity(intent);
                 break;
             case(R.id.commentsButton):
@@ -84,7 +78,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 intent = new Intent(parentContext,FavouritesCommentsActivity.class );
                 intent.putExtra("tabLayout","1");
                 intent.putExtra("postIdIntent",postId);
-                intent.putExtra("post",posts.get(position));
                 parentContext.startActivity(intent);
                 //Toast.makeText(parentContext, "new comment" + position+ " selected, postID "+ postId,Toast.LENGTH_SHORT).show();
                 break;
@@ -92,8 +85,7 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
                 //Intent intent = new Intent(this,activity.class );
                 //Activity activity = new PostImageActivity();
                 intent = new Intent(parentContext,PostImageActivity.class );
-                intent.putExtra("postPosition",position);
-                intent.putExtra("post",posts.get(position));
+                intent.putExtra("postIdIntent",postId);
                 parentContext.startActivity(intent);
                 //Toast.makeText(parentContext, "new image" + position+ " selected, postID "+ postId,Toast.LENGTH_SHORT).show();
             case (R.id.cardView_parent):
@@ -114,10 +106,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         Log.d(TAG,"onBindViewHolder: Called");
         String postId = posts.get(position).getPostId();
         holder.userNameTxt.setText(posts.get(position).getPostUserProfile().getName());
-        holder.captionText.setText(posts.get(position).getCaption());
-        holder.timeSincePostedText.setText(posts.get(position).getTimeSincePosted());
-        holder.favCountText.setText(Integer.toString(posts.get(position).getFavouriteCount()));
-        Glide.with(fragmentContext).asBitmap().load(posts.get(position).getPostUserProfile().getProfilePicURL()).into(holder.profImage);
         Glide.with(fragmentContext).asBitmap().load(posts.get(position).getImageURL()).into(holder.postImg);
         holder.postImg.setOnClickListener(v -> onClick(v,position,postId));
         holder.comments.setOnClickListener(v -> onClick(v,position,postId));
@@ -156,10 +144,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
         private final RelativeLayout favouriteButton;
         private final RelativeLayout commentsButton;
         private final ImageView shareButton;
-        private final TextView captionText;
-        private final ImageView profImage;
-        private final TextView timeSincePostedText;
-        private final TextView favCountText;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             parent = itemView.findViewById(R.id.cardView_parent);
@@ -170,10 +154,6 @@ public class PostRecViewAdapter extends RecyclerView.Adapter<PostRecViewAdapter.
             favourites = itemView.findViewById(R.id.favourites);
             favouriteButton = itemView.findViewById(R.id.favButtonPostMenu);
             shareButton = itemView.findViewById(R.id.shareButton);
-            captionText = itemView.findViewById(R.id.captionText);
-            profImage = itemView.findViewById(R.id.profileImg);
-            timeSincePostedText = itemView.findViewById(R.id.timeSincePostedTxt);
-            favCountText = itemView.findViewById(R.id.favCount);
 
         }
     }

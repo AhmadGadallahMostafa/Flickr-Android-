@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
@@ -28,6 +29,27 @@ public class HomePageActivity extends AppCompatActivity {
         viewPager2.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager2);
         InitTabLayoutTabs();
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tabLayout.getTabAt(2).isSelected()==true)
+                {
+                    Intent i = new Intent(HomePageActivity.this,Profile.class);
+                    HomePageActivity.this.startActivity(i);
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 

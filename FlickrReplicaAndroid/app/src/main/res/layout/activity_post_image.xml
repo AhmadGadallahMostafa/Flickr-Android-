@@ -38,7 +38,6 @@
             android:background="@android:color/transparent"
             app:cardBackgroundColor="@android:color/transparent">
             <ImageView
-                android:id="@+id/profileImgPostImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_profile"/>
@@ -49,7 +48,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical">
             <TextView
-                android:id="@+id/userNamePostImg"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="UserName"
@@ -72,19 +70,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
         <ImageView
-            android:id="@+id/favButtonPostImg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_fav_unclicked"
             android:padding="10dp"/>
         <ImageView
-            android:id="@+id/commentsButtonPostImg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_comments"
             android:padding="10dp"/>
         <ImageView
-            android:id="@+id/shareButtonPostImg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/ic_share"
@@ -106,7 +101,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/captionPostImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Caption Here"
