@@ -1,0 +1,203 @@
+<html>
+<head>
+<title>PostRecViewAdapter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #629755; font-style: italic;}
+.s3 { color: #6a8759;}
+.s4 { color: #629755; font-weight: bold; font-style: italic;}
+.s5 { color: #808080;}
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+PostRecViewAdapter.java</font>
+</center></td></tr></table>
+<pre><a name="l1"><span class="ln">1    </span></a><span class="s0">package </span><span class="s1">com.example.FlickrReplicaAndroid</span><span class="s0">;</span>
+<a name="l2"><span class="ln">2    </span></a>
+<a name="l3"><span class="ln">3    </span></a><span class="s0">import </span><span class="s1">android.content.Context</span><span class="s0">;</span>
+<a name="l4"><span class="ln">4    </span></a><span class="s0">import </span><span class="s1">android.content.Intent</span><span class="s0">;</span>
+<a name="l5"><span class="ln">5    </span></a><span class="s0">import </span><span class="s1">android.util.Log</span><span class="s0">;</span>
+<a name="l6"><span class="ln">6    </span></a><span class="s0">import </span><span class="s1">android.view.LayoutInflater</span><span class="s0">;</span>
+<a name="l7"><span class="ln">7    </span></a><span class="s0">import </span><span class="s1">android.view.View</span><span class="s0">;</span>
+<a name="l8"><span class="ln">8    </span></a><span class="s0">import </span><span class="s1">android.view.ViewGroup</span><span class="s0">;</span>
+<a name="l9"><span class="ln">9    </span></a><span class="s0">import </span><span class="s1">android.widget.ImageView</span><span class="s0">;</span>
+<a name="l10"><span class="ln">10   </span></a><span class="s0">import </span><span class="s1">android.widget.RelativeLayout</span><span class="s0">;</span>
+<a name="l11"><span class="ln">11   </span></a><span class="s0">import </span><span class="s1">android.widget.TextView</span><span class="s0">;</span>
+<a name="l12"><span class="ln">12   </span></a>
+<a name="l13"><span class="ln">13   </span></a><span class="s0">import </span><span class="s1">androidx.annotation.NonNull</span><span class="s0">;</span>
+<a name="l14"><span class="ln">14   </span></a><span class="s0">import </span><span class="s1">androidx.cardview.widget.CardView</span><span class="s0">;</span>
+<a name="l15"><span class="ln">15   </span></a><span class="s0">import </span><span class="s1">androidx.fragment.app.Fragment</span><span class="s0">;</span>
+<a name="l16"><span class="ln">16   </span></a><span class="s0">import </span><span class="s1">androidx.recyclerview.widget.RecyclerView</span><span class="s0">;</span>
+<a name="l17"><span class="ln">17   </span></a>
+<a name="l18"><span class="ln">18   </span></a><span class="s0">import </span><span class="s1">com.bumptech.glide.Glide</span><span class="s0">;</span>
+<a name="l19"><span class="ln">19   </span></a>
+<a name="l20"><span class="ln">20   </span></a><span class="s0">import </span><span class="s1">java.io.Serializable</span><span class="s0">;</span>
+<a name="l21"><span class="ln">21   </span></a><span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s0">;</span>
+<a name="l22"><span class="ln">22   </span></a>
+<a name="l23"><span class="ln">23   </span></a><span class="s2">/**</span>
+<a name="l24"><span class="ln">24   </span></a> <span class="s2">*</span>
+<a name="l25"><span class="ln">25   </span></a> <span class="s2">*/</span>
+<a name="l26"><span class="ln">26   </span></a><span class="s0">public class </span><span class="s1">PostRecViewAdapter </span><span class="s0">extends </span><span class="s1">RecyclerView.Adapter&lt;PostRecViewAdapter.ViewHolder&gt; {</span>
+<a name="l27"><span class="ln">27   </span></a>    <span class="s0">private static final </span><span class="s1">String TAG = </span><span class="s3">&quot;PostRecViewAdapter&quot;</span><span class="s0">;</span>
+<a name="l28"><span class="ln">28   </span></a>
+<a name="l29"><span class="ln">29   </span></a>    <span class="s0">private </span><span class="s1">ArrayList&lt;Post&gt; posts = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s0">;</span>
+<a name="l30"><span class="ln">30   </span></a>    <span class="s0">private final </span><span class="s1">Context parentContext</span><span class="s0">;</span>
+<a name="l31"><span class="ln">31   </span></a>    <span class="s0">private </span><span class="s1">Fragment fragmentContext</span><span class="s0">;</span>
+<a name="l32"><span class="ln">32   </span></a>
+<a name="l33"><span class="ln">33   </span></a>    <span class="s0">public </span><span class="s1">PostRecViewAdapter(Context parentContext) {</span>
+<a name="l34"><span class="ln">34   </span></a>        <span class="s0">this</span><span class="s1">.parentContext = parentContext</span><span class="s0">;</span>
+<a name="l35"><span class="ln">35   </span></a>    <span class="s1">}</span>
+<a name="l36"><span class="ln">36   </span></a>    <span class="s0">public </span><span class="s1">PostRecViewAdapter(Context parentContext</span><span class="s0">,</span><span class="s1">Fragment fragmentContext) {</span>
+<a name="l37"><span class="ln">37   </span></a>        <span class="s0">this</span><span class="s1">.parentContext = parentContext</span><span class="s0">;</span>
+<a name="l38"><span class="ln">38   </span></a>        <span class="s0">this</span><span class="s1">.fragmentContext = fragmentContext</span><span class="s0">;</span>
+<a name="l39"><span class="ln">39   </span></a>    <span class="s1">}</span>
+<a name="l40"><span class="ln">40   </span></a>
+<a name="l41"><span class="ln">41   </span></a>    <span class="s0">public </span><span class="s1">ArrayList&lt;Post&gt; getPosts() {</span>
+<a name="l42"><span class="ln">42   </span></a>        <span class="s0">return </span><span class="s1">posts</span><span class="s0">;</span>
+<a name="l43"><span class="ln">43   </span></a>    <span class="s1">}</span>
+<a name="l44"><span class="ln">44   </span></a>
+<a name="l45"><span class="ln">45   </span></a>    <span class="s1">@NonNull</span>
+<a name="l46"><span class="ln">46   </span></a>    <span class="s1">@Override</span>
+<a name="l47"><span class="ln">47   </span></a>    <span class="s0">public </span><span class="s1">ViewHolder onCreateViewHolder(@NonNull ViewGroup parent</span><span class="s0">, int </span><span class="s1">viewType) {</span>
+<a name="l48"><span class="ln">48   </span></a>        <span class="s1">View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_post</span><span class="s0">,</span><span class="s1">parent</span><span class="s0">,false</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l49"><span class="ln">49   </span></a>        <span class="s1">ViewHolder holder = </span><span class="s0">new </span><span class="s1">ViewHolder(view)</span><span class="s0">;</span>
+<a name="l50"><span class="ln">50   </span></a>        <span class="s0">return </span><span class="s1">holder</span><span class="s0">;</span>
+<a name="l51"><span class="ln">51   </span></a>    <span class="s1">}</span>
+<a name="l52"><span class="ln">52   </span></a>
+<a name="l53"><span class="ln">53   </span></a>    <span class="s2">/**</span>
+<a name="l54"><span class="ln">54   </span></a>     <span class="s2">* This functions handles clicks on the screen and check which part of the View v was clicked and its position and</span>
+<a name="l55"><span class="ln">55   </span></a>     <span class="s2">* the postId is passed along with it to use to send as intent</span>
+<a name="l56"><span class="ln">56   </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">v the view itself</span>
+<a name="l57"><span class="ln">57   </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">position the position in the recycle viewer</span>
+<a name="l58"><span class="ln">58   </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">postId the id of the post that is being clicked on</span>
+<a name="l59"><span class="ln">59   </span></a>     <span class="s2">*/</span>
+<a name="l60"><span class="ln">60   </span></a>    <span class="s0">public void </span><span class="s1">onClick(View v</span><span class="s0">,int </span><span class="s1">position</span><span class="s0">,</span><span class="s1">String postId){</span>
+<a name="l61"><span class="ln">61   </span></a>        <span class="s1">Intent intent</span><span class="s0">;</span>
+<a name="l62"><span class="ln">62   </span></a>        <span class="s0">switch</span><span class="s1">(v.getId()){</span>
+<a name="l63"><span class="ln">63   </span></a>
+<a name="l64"><span class="ln">64   </span></a>            <span class="s0">case</span><span class="s1">(R.id.shareButton):</span>
+<a name="l65"><span class="ln">65   </span></a>                <span class="s1">intent = </span><span class="s0">new </span><span class="s1">Intent(Intent.ACTION_SEND )</span><span class="s0">;</span>
+<a name="l66"><span class="ln">66   </span></a>                <span class="s1">intent.setType(</span><span class="s3">&quot;text/plain&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l67"><span class="ln">67   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;postIdIntent&quot;</span><span class="s0">,</span><span class="s1">String.valueOf(postId))</span><span class="s0">;</span>
+<a name="l68"><span class="ln">68   </span></a>                <span class="s1">intent.putExtra(Intent.EXTRA_SUBJECT</span><span class="s0">,</span><span class="s3">&quot;Link: &quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l69"><span class="ln">69   </span></a>                <span class="s1">intent.putExtra(Intent.EXTRA_TEXT</span><span class="s0">,</span><span class="s3">&quot;http://www.thealphaflickr.xyz/photo/&quot;</span><span class="s1">+postId)</span><span class="s0">;</span>
+<a name="l70"><span class="ln">70   </span></a>                <span class="s1">parentContext.startActivity(Intent.createChooser(intent</span><span class="s0">,</span><span class="s3">&quot;Share via: &quot;</span><span class="s1">))</span><span class="s0">;</span>
+<a name="l71"><span class="ln">71   </span></a>                <span class="s0">break;</span>
+<a name="l72"><span class="ln">72   </span></a>            <span class="s0">case</span><span class="s1">(R.id.favButtonPostMenu):</span>
+<a name="l73"><span class="ln">73   </span></a>            <span class="s0">case</span><span class="s1">(R.id.favourites ):</span>
+<a name="l74"><span class="ln">74   </span></a>                <span class="s5">//Toast.makeText(parentContext, &quot;new fav&quot; + position+ &quot; selected, postID &quot;+ postId ,Toast.LENGTH_SHORT).show();</span>
+<a name="l75"><span class="ln">75   </span></a>                <span class="s1">intent = </span><span class="s0">new </span><span class="s1">Intent(parentContext</span><span class="s0">,<a href="FavouritesCommentsActivity.java.html">FavouritesCommentsActivity</a></span><span class="s1">.</span><span class="s0">class </span><span class="s1">)</span><span class="s0">;</span>
+<a name="l76"><span class="ln">76   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;tabLayout&quot;</span><span class="s0">,</span><span class="s3">&quot;0&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l77"><span class="ln">77   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;postIdIntent&quot;</span><span class="s0">,</span><span class="s1">postId)</span><span class="s0">;</span>
+<a name="l78"><span class="ln">78   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;post&quot;</span><span class="s0">,</span><span class="s1">posts.get(position))</span><span class="s0">;</span>
+<a name="l79"><span class="ln">79   </span></a>                <span class="s1">parentContext.startActivity(intent)</span><span class="s0">;</span>
+<a name="l80"><span class="ln">80   </span></a>                <span class="s0">break;</span>
+<a name="l81"><span class="ln">81   </span></a>            <span class="s0">case</span><span class="s1">(R.id.commentsButton):</span>
+<a name="l82"><span class="ln">82   </span></a>            <span class="s0">case</span><span class="s1">(R.id.comments):</span>
+<a name="l83"><span class="ln">83   </span></a>                <span class="s5">//Activity activity = new FavouritesCommentsActivity();</span>
+<a name="l84"><span class="ln">84   </span></a>                <span class="s1">intent = </span><span class="s0">new </span><span class="s1">Intent(parentContext</span><span class="s0">,<a href="FavouritesCommentsActivity.java.html">FavouritesCommentsActivity</a></span><span class="s1">.</span><span class="s0">class </span><span class="s1">)</span><span class="s0">;</span>
+<a name="l85"><span class="ln">85   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;tabLayout&quot;</span><span class="s0">,</span><span class="s3">&quot;1&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l86"><span class="ln">86   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;postIdIntent&quot;</span><span class="s0">,</span><span class="s1">postId)</span><span class="s0">;</span>
+<a name="l87"><span class="ln">87   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;post&quot;</span><span class="s0">,</span><span class="s1">posts.get(position))</span><span class="s0">;</span>
+<a name="l88"><span class="ln">88   </span></a>                <span class="s1">parentContext.startActivity(intent)</span><span class="s0">;</span>
+<a name="l89"><span class="ln">89   </span></a>                <span class="s5">//Toast.makeText(parentContext, &quot;new comment&quot; + position+ &quot; selected, postID &quot;+ postId,Toast.LENGTH_SHORT).show();</span>
+<a name="l90"><span class="ln">90   </span></a>                <span class="s0">break;</span>
+<a name="l91"><span class="ln">91   </span></a>            <span class="s0">case </span><span class="s1">(R.id.postImage):</span>
+<a name="l92"><span class="ln">92   </span></a>                <span class="s5">//Intent intent = new Intent(this,activity.class );</span>
+<a name="l93"><span class="ln">93   </span></a>                <span class="s5">//Activity activity = new PostImageActivity();</span>
+<a name="l94"><span class="ln">94   </span></a>                <span class="s1">intent = </span><span class="s0">new </span><span class="s1">Intent(parentContext</span><span class="s0">,<a href="PostImageActivity.java.html">PostImageActivity</a></span><span class="s1">.</span><span class="s0">class </span><span class="s1">)</span><span class="s0">;</span>
+<a name="l95"><span class="ln">95   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;postPosition&quot;</span><span class="s0">,</span><span class="s1">position)</span><span class="s0">;</span>
+<a name="l96"><span class="ln">96   </span></a>                <span class="s1">intent.putExtra(</span><span class="s3">&quot;post&quot;</span><span class="s0">,</span><span class="s1">posts.get(position))</span><span class="s0">;</span>
+<a name="l97"><span class="ln">97   </span></a>                <span class="s1">parentContext.startActivity(intent)</span><span class="s0">;</span>
+<a name="l98"><span class="ln">98   </span></a>                <span class="s5">//Toast.makeText(parentContext, &quot;new image&quot; + position+ &quot; selected, postID &quot;+ postId,Toast.LENGTH_SHORT).show();</span>
+<a name="l99"><span class="ln">99   </span></a>            <span class="s0">case </span><span class="s1">(R.id.cardView_parent):</span>
+<a name="l100"><span class="ln">100  </span></a>                <span class="s5">//Toast.makeText(parentContext, &quot;new post&quot; + position+ &quot; selected, postID &quot;+ postId ,Toast.LENGTH_SHORT).show();</span>
+<a name="l101"><span class="ln">101  </span></a>                <span class="s0">break;</span>
+<a name="l102"><span class="ln">102  </span></a>            <span class="s0">default</span><span class="s1">:</span>
+<a name="l103"><span class="ln">103  </span></a>                <span class="s0">break;</span>
+<a name="l104"><span class="ln">104  </span></a>        <span class="s1">}</span>
+<a name="l105"><span class="ln">105  </span></a>    <span class="s1">}</span>
+<a name="l106"><span class="ln">106  </span></a>
+<a name="l107"><span class="ln">107  </span></a>    <span class="s2">/**</span>
+<a name="l108"><span class="ln">108  </span></a>     <span class="s2">* sets the data of the post to its view in the cardview and sets the onclick listiner</span>
+<a name="l109"><span class="ln">109  </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">holder the cardview that contains all the views</span>
+<a name="l110"><span class="ln">110  </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">position the postion of the cardview in the recycle view</span>
+<a name="l111"><span class="ln">111  </span></a>     <span class="s2">*/</span>
+<a name="l112"><span class="ln">112  </span></a>    <span class="s1">@Override</span>
+<a name="l113"><span class="ln">113  </span></a>    <span class="s0">public void </span><span class="s1">onBindViewHolder(@NonNull ViewHolder holder</span><span class="s0">, int </span><span class="s1">position) {</span>
+<a name="l114"><span class="ln">114  </span></a>        <span class="s1">Log.d(TAG</span><span class="s0">,</span><span class="s3">&quot;onBindViewHolder: Called&quot;</span><span class="s1">)</span><span class="s0">;</span>
+<a name="l115"><span class="ln">115  </span></a>        <span class="s1">String postId = posts.get(position).getPostId()</span><span class="s0">;</span>
+<a name="l116"><span class="ln">116  </span></a>        <span class="s1">holder.userNameTxt.setText(posts.get(position).getPostUserProfile().getName())</span><span class="s0">;</span>
+<a name="l117"><span class="ln">117  </span></a>        <span class="s1">holder.captionText.setText(posts.get(position).getCaption())</span><span class="s0">;</span>
+<a name="l118"><span class="ln">118  </span></a>        <span class="s1">holder.timeSincePostedText.setText(posts.get(position).getTimeSincePosted())</span><span class="s0">;</span>
+<a name="l119"><span class="ln">119  </span></a>        <span class="s1">holder.favCountText.setText(Integer.toString(posts.get(position).getFavouriteCount()))</span><span class="s0">;</span>
+<a name="l120"><span class="ln">120  </span></a>        <span class="s1">Glide.with(fragmentContext).asBitmap().load(posts.get(position).getPostUserProfile().getProfilePicURL()).into(holder.profImage)</span><span class="s0">;</span>
+<a name="l121"><span class="ln">121  </span></a>        <span class="s1">Glide.with(fragmentContext).asBitmap().load(posts.get(position).getImageURL()).into(holder.postImg)</span><span class="s0">;</span>
+<a name="l122"><span class="ln">122  </span></a>        <span class="s1">holder.postImg.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l123"><span class="ln">123  </span></a>        <span class="s1">holder.comments.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l124"><span class="ln">124  </span></a>        <span class="s1">holder.parent.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l125"><span class="ln">125  </span></a>        <span class="s1">holder.commentsButton.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l126"><span class="ln">126  </span></a>        <span class="s1">holder.favourites.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l127"><span class="ln">127  </span></a>        <span class="s1">holder.favouriteButton.setOnClickListener(v -&gt; onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l128"><span class="ln">128  </span></a>        <span class="s1">holder.shareButton.setOnClickListener(v-&gt;onClick(v</span><span class="s0">,</span><span class="s1">position</span><span class="s0">,</span><span class="s1">postId))</span><span class="s0">;</span>
+<a name="l129"><span class="ln">129  </span></a>
+<a name="l130"><span class="ln">130  </span></a>    <span class="s1">}</span>
+<a name="l131"><span class="ln">131  </span></a>
+<a name="l132"><span class="ln">132  </span></a>    <span class="s2">/**</span>
+<a name="l133"><span class="ln">133  </span></a>     <span class="s2">* gets the size of the array of posts</span>
+<a name="l134"><span class="ln">134  </span></a>     <span class="s2">* </span><span class="s4">@return </span><span class="s2">Size of the array of posts</span>
+<a name="l135"><span class="ln">135  </span></a>     <span class="s2">*/</span>
+<a name="l136"><span class="ln">136  </span></a>    <span class="s1">@Override</span>
+<a name="l137"><span class="ln">137  </span></a>    <span class="s0">public int </span><span class="s1">getItemCount() {</span>
+<a name="l138"><span class="ln">138  </span></a>        <span class="s0">return </span><span class="s1">posts.size()</span><span class="s0">;</span>
+<a name="l139"><span class="ln">139  </span></a>    <span class="s1">}</span>
+<a name="l140"><span class="ln">140  </span></a>
+<a name="l141"><span class="ln">141  </span></a>    <span class="s2">/**</span>
+<a name="l142"><span class="ln">142  </span></a>     <span class="s2">* sets the post for the class and notifies if data set is changed</span>
+<a name="l143"><span class="ln">143  </span></a>     <span class="s2">* </span><span class="s4">@param </span><span class="s2">posts list of posts</span>
+<a name="l144"><span class="ln">144  </span></a>     <span class="s2">*/</span>
+<a name="l145"><span class="ln">145  </span></a>    <span class="s0">public void </span><span class="s1">setPosts(ArrayList&lt;Post&gt; posts) {</span>
+<a name="l146"><span class="ln">146  </span></a>        <span class="s0">this</span><span class="s1">.posts = posts</span><span class="s0">;</span>
+<a name="l147"><span class="ln">147  </span></a>        <span class="s1">notifyDataSetChanged()</span><span class="s0">;</span>
+<a name="l148"><span class="ln">148  </span></a>    <span class="s1">}</span>
+<a name="l149"><span class="ln">149  </span></a>
+<a name="l150"><span class="ln">150  </span></a>    <span class="s0">public class </span><span class="s1">ViewHolder </span><span class="s0">extends </span><span class="s1">RecyclerView.ViewHolder{</span>
+<a name="l151"><span class="ln">151  </span></a>        <span class="s0">private final </span><span class="s1">CardView parent</span><span class="s0">;</span>
+<a name="l152"><span class="ln">152  </span></a>        <span class="s0">private final </span><span class="s1">ImageView postImg</span><span class="s0">;</span>
+<a name="l153"><span class="ln">153  </span></a>        <span class="s0">private final </span><span class="s1">TextView userNameTxt</span><span class="s0">;</span>
+<a name="l154"><span class="ln">154  </span></a>        <span class="s0">private final </span><span class="s1">TextView comments</span><span class="s0">;</span>
+<a name="l155"><span class="ln">155  </span></a>        <span class="s0">private final </span><span class="s1">TextView favourites</span><span class="s0">;</span>
+<a name="l156"><span class="ln">156  </span></a>        <span class="s0">private final </span><span class="s1">RelativeLayout favouriteButton</span><span class="s0">;</span>
+<a name="l157"><span class="ln">157  </span></a>        <span class="s0">private final </span><span class="s1">RelativeLayout commentsButton</span><span class="s0">;</span>
+<a name="l158"><span class="ln">158  </span></a>        <span class="s0">private final </span><span class="s1">ImageView shareButton</span><span class="s0">;</span>
+<a name="l159"><span class="ln">159  </span></a>        <span class="s0">private final </span><span class="s1">TextView captionText</span><span class="s0">;</span>
+<a name="l160"><span class="ln">160  </span></a>        <span class="s0">private final </span><span class="s1">ImageView profImage</span><span class="s0">;</span>
+<a name="l161"><span class="ln">161  </span></a>        <span class="s0">private final </span><span class="s1">TextView timeSincePostedText</span><span class="s0">;</span>
+<a name="l162"><span class="ln">162  </span></a>        <span class="s0">private final </span><span class="s1">TextView favCountText</span><span class="s0">;</span>
+<a name="l163"><span class="ln">163  </span></a>        <span class="s0">public </span><span class="s1">ViewHolder(@NonNull View itemView) {</span>
+<a name="l164"><span class="ln">164  </span></a>            <span class="s0">super</span><span class="s1">(itemView)</span><span class="s0">;</span>
+<a name="l165"><span class="ln">165  </span></a>            <span class="s1">parent = itemView.findViewById(R.id.cardView_parent)</span><span class="s0">;</span>
+<a name="l166"><span class="ln">166  </span></a>            <span class="s1">postImg = itemView.findViewById(R.id.postImage)</span><span class="s0">;</span>
+<a name="l167"><span class="ln">167  </span></a>            <span class="s1">userNameTxt = itemView.findViewById(R.id.userProfileName)</span><span class="s0">;</span>
+<a name="l168"><span class="ln">168  </span></a>            <span class="s1">comments = itemView.findViewById(R.id.comments)</span><span class="s0">;</span>
+<a name="l169"><span class="ln">169  </span></a>            <span class="s1">commentsButton = itemView.findViewById(R.id.commentsButton)</span><span class="s0">;</span>
+<a name="l170"><span class="ln">170  </span></a>            <span class="s1">favourites = itemView.findViewById(R.id.favourites)</span><span class="s0">;</span>
+<a name="l171"><span class="ln">171  </span></a>            <span class="s1">favouriteButton = itemView.findViewById(R.id.favButtonPostMenu)</span><span class="s0">;</span>
+<a name="l172"><span class="ln">172  </span></a>            <span class="s1">shareButton = itemView.findViewById(R.id.shareButton)</span><span class="s0">;</span>
+<a name="l173"><span class="ln">173  </span></a>            <span class="s1">captionText = itemView.findViewById(R.id.captionText)</span><span class="s0">;</span>
+<a name="l174"><span class="ln">174  </span></a>            <span class="s1">profImage = itemView.findViewById(R.id.profileImg)</span><span class="s0">;</span>
+<a name="l175"><span class="ln">175  </span></a>            <span class="s1">timeSincePostedText = itemView.findViewById(R.id.timeSincePostedTxt)</span><span class="s0">;</span>
+<a name="l176"><span class="ln">176  </span></a>            <span class="s1">favCountText = itemView.findViewById(R.id.favCount)</span><span class="s0">;</span>
+<a name="l177"><span class="ln">177  </span></a>
+<a name="l178"><span class="ln">178  </span></a>        <span class="s1">}</span>
+<a name="l179"><span class="ln">179  </span></a>    <span class="s1">}</span>
+<a name="l180"><span class="ln">180  </span></a><span class="s1">}</span>
+<a name="l181"><span class="ln">181  </span></a></pre>
+</body>
+</html>
